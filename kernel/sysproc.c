@@ -6,6 +6,14 @@
 #include "spinlock.h"
 #include "proc.h"
 
+// uint64
+// sys_exit(void)
+// {
+//   int n;
+//   argint(0, &n);
+//   exit(n);sleep
+//   return 0;  // not reached
+// }
 uint64
 sys_exit(void)
 {
@@ -14,7 +22,6 @@ sys_exit(void)
   exit(n);
   return 0;  // not reached
 }
-
 uint64
 sys_getpid(void)
 {
@@ -88,4 +95,10 @@ sys_uptime(void)
   xticks = ticks;
   release(&tickslock);
   return xticks;
+}
+
+//Hwy added
+int sys_getprocs(void)
+{
+  return getprocs();
 }

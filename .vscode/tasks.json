@@ -1,0 +1,29 @@
+// xv6-riscv/.vscode/tasks.json
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "xv6build",
+            "type": "shell",
+            "isBackground": true,
+            "command": "make qemu-gdb",
+            "problemMatcher":[
+                {
+                    "pattern": [
+                        {
+                            "regexp": ".",
+                            "file": 1,
+                            "location": 2,
+                            "message": 3
+                        }
+                    ],
+                    "background": {
+                        "beginsPattern":".*Hello Hwy, this is beginsPattern.And now run 'gdb' in another window.",
+                        //after the above pattern is matched, echo a sentence match Makefile Line:170
+                    "endsPattern":"."
+                    }   
+                }
+            ]
+        }
+    ]
+}
