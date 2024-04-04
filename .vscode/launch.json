@@ -1,20 +1,36 @@
-// xv6-riscv/.vscode/launch.json
 {
-    "version": "0.2.0",
-    "configurations": [
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "xv6debug",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/kernel/kernel",
+      "stopAtEntry": true,
+      "cwd": "${workspaceFolder}",
+      "miDebuggerServerAddress": "127.0.0.1:26000",
+      "miDebuggerPath": "/usr/bin/gdb-multiarch",
+      "MIMode": "gdb",
+      "preLaunchTask": "xv6build"
+    },
+    {
+      "name": "C/C++ Runner: Debug Session",
+      "type": "cppdbg",
+      "request": "launch",
+      "args": [],
+      "stopAtEntry": false,
+      "externalConsole": false,
+      "cwd": "/home/marquis/Dev/xv6-riscv/kernel",
+      "program": "/home/marquis/Dev/xv6-riscv/kernel/build/Debug/outDebug",
+      "MIMode": "gdb",
+      "miDebuggerPath": "gdb",
+      "setupCommands": [
         {
-            "name": "xv6debug",
-            "type": "cppdbg",
-            "request": "launch",
-            "program": "${workspaceFolder}/kernel/kernel",
-            "stopAtEntry": true,
-            "cwd": "${workspaceFolder}",
-            "miDebuggerServerAddress": "127.0.0.1:26000",
-            "miDebuggerPath": "/usr/bin/gdb-multiarch",
-            "MIMode": "gdb",
-            "preLaunchTask": "xv6build"
-
-            
+          "description": "Enable pretty-printing for gdb",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
         }
-    ]
+      ]
+    }
+  ]
 }
