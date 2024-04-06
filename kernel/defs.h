@@ -1,3 +1,6 @@
+#ifndef _defsh_
+#define _defsh_
+
 struct buf;
 struct context;
 struct file;
@@ -60,8 +63,8 @@ void            ramdiskintr(void);
 void            ramdiskrw(struct buf*);
 
 // hwy_malloc.c
-void *kmalloc(int);
-void kfree(void *);
+void*           hwy_kmalloc(int);
+void            hwy_kfree(void *);
 
 // kalloc.c
 void*           kalloc(void);
@@ -193,3 +196,4 @@ void            virtio_disk_intr(void);
 
 // number of elements in fixed-size array
 #define NELEM(x) (sizeof(x)/sizeof((x)[0]))
+#endif

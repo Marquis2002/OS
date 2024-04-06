@@ -1,8 +1,9 @@
 #include "types.h"
-#include "defs.h"
 #include "param.h"
 #include "memlayout.h"
 #include "spinlock.h"
+#include "riscv.h"
+#include "defs.h"
 
 #define SLAB_SIZE 4096  // 每个slab的大小
 #define CACHE_SIZE 32   // 每个缓存的对象大小
@@ -24,7 +25,7 @@ struct cache {
 static struct cache caches[NCPU][CACHE_SIZE];  // 每个CPU的缓存数组
 static char *alloc_ptr = (char *)ALLOC_START;  // 当前分配的虚拟地址
 
-void *kmalloc(int size) {
+void *hwy_kmalloc(int size) {
   if (size <= 0 || size > CACHE_SIZE)
     return 0;
 
@@ -50,19 +51,20 @@ void *kmalloc(int size) {
     c->slabs = s;
   }
 
-  struct slab *s = c->slabs;
-  void *ptr = s->objects;
-  s->objects += c->size;
+struct slab *s = c->slabs;
+void *ptr = s->objects;
+ptr = (char *)s->objects + c->size;
 
-  if (s->objects + c->size > (char *)s + SLAB_SIZE) {  // 如果当前slab已满,移动到下一个slab
-    c->slabs = s->next;
-  }
+if ((char *)ptr + c->size > (char *)s + SLAB_SIZE) {  // 如果当前slab已满,移动到下一个slab
+  c->slabs = s->next;
+}
+
 
   release(&c->lock);
   return ptr;
 }
 
-void kfree(void *ptr) {
+void hwy_kfree(void *ptr) {
   if (!ptr)
     return;
 

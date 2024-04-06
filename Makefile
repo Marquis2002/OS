@@ -7,7 +7,6 @@ OBJS = \
   $K/console.o \
   $K/printf.o \
   $K/uart.o \
-  $K/hwy_malloc.o \
   $K/kalloc.o \
   $K/spinlock.o \
   $K/string.o \
@@ -29,7 +28,8 @@ OBJS = \
   $K/sysfile.o \
   $K/kernelvec.o \
   $K/plic.o \
-  $K/virtio_disk.o
+  $K/virtio_disk.o \
+  $K/hwy_malloc.o 
 
 # riscv64-unknown-elf- or riscv64-linux-gnu-
 # perhaps in /opt/riscv/bin

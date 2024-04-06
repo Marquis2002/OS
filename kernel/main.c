@@ -32,6 +32,16 @@ main()
     userinit();      // first user process *process is so cute
     __sync_synchronize();
     started = 1;
+
+      // 测试 slab 分配器
+    void *ptr1 = hwy_kmalloc(16);
+    void *ptr2 = hwy_kmalloc(32);
+    void *ptr3 = hwy_kmalloc(64);
+    
+    hwy_kfree(ptr1);
+    hwy_kfree(ptr2);
+    hwy_kfree(ptr3);
+
   } else {
     while(started == 0)
       ;

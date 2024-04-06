@@ -62,6 +62,7 @@
     "sleeplock.h": "c",
     "types.h": "c",
     "memlayout.h": "c",
-    "param.h": "c"
+    "param.h": "c",
+    "defs.h": "c"
   }
 }
