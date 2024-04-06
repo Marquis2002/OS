@@ -27,7 +27,10 @@ void
 kinit()
 {
   initlock(&kmem.lock, "kmem");
-  freerange(end, (void*)PHYSTOP);
+  // hwy: free memory range
+  // freerange(end, (void*)PHYSTOP);
+  freerange(end, (void*)HWY_HEAP);
+
 }
 
 void
@@ -48,7 +51,8 @@ kfree(void *pa)
 {
   struct run *r;
 
-  if(((uint64)pa % PGSIZE) != 0 || (char*)pa < end || (uint64)pa >= PHYSTOP)
+  // if(((uint64)pa % PGSIZE) != 0 || (char*)pa < end || (uint64)pa >= PHYSTOP)
+  if(((uint64)pa % PGSIZE) != 0 || (char*)pa < end || (uint64)pa >= HWY_HEAP)
     panic("kfree");
 
   // Fill with junk to catch dangling refs.

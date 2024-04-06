@@ -134,7 +134,7 @@ static uint64 (*syscalls[])(void) = {
 void
 syscall(void)
 {
-  printf(">>>>>>>hwy_hi, this is syscall!\n");
+  // printf(">>>>>>>hwy_hi, this is syscall!\n");
   int num;
   struct proc *p = myproc();
 

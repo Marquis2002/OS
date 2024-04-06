@@ -60,6 +60,8 @@
     "buf.h": "c",
     "spinlock.h": "c",
     "sleeplock.h": "c",
-    "types.h": "c"
+    "types.h": "c",
+    "memlayout.h": "c",
+    "param.h": "c"
   }
 }

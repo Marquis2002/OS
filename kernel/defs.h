@@ -59,6 +59,10 @@ void            ramdiskinit(void);
 void            ramdiskintr(void);
 void            ramdiskrw(struct buf*);
 
+// hwy_malloc.c
+void *kmalloc(int);
+void kfree(void *);
+
 // kalloc.c
 void*           kalloc(void);
 void            kfree(void *);

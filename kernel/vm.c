@@ -37,7 +37,11 @@ kvmmake(void)
   kvmmap(kpgtbl, KERNBASE, KERNBASE, (uint64)etext-KERNBASE, PTE_R | PTE_X);
 
   // map kernel data and the physical RAM we'll make use of.
-  kvmmap(kpgtbl, (uint64)etext, (uint64)etext, PHYSTOP-(uint64)etext, PTE_R | PTE_W);
+  // Here comes the RAM
+  kvmmap(kpgtbl, (uint64)etext, (uint64)etext, HWY_HEAP-(uint64)etext, PTE_R | PTE_W);
+  
+  // map the HWY_HEAP I'll make use of
+  kvmmap(kpgtbl, HWY_HEAP, HWY_HEAP, PHYSTOP-HWY_HEAP, PTE_R | PTE_W);
 
   // map the trampoline for trap entry/exit to
   // the highest virtual address in the kernel.
